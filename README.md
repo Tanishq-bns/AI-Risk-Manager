@@ -335,9 +335,8 @@ Open your browser at `http://127.0.0.1:8000` to interact with the system.
 - **Developer:** Tanishq Sutrave
 - **Standard of Engineering:** Top-1% Evidence-Backed Systems Portfolio Piece (185/185 tests passed, 17/17 failure drills verified, P95 = 60.36 ms, ₹82,847 net value documented).
 - **Core Verification Documents:**
-  - [Final Submission Report](docs/FINAL_SUBMISSION_REPORT.md)
-  - [Final Health Check (19/19 PASS)](docs/FINAL_HEALTH_CHECK.md)
-  - [Final Forensic Audit](docs/FINAL_AUDIT.md)
+  - [Project Status & Engineering Audit](docs/PROJECT_STATUS.md)
+  - [System Specifications (PRD, TRD, Architecture)](docs/spec/)
   - [Architecture Guardrails & Proofs](docs/ARCHITECTURE_GUARDRAILS.md)
   - [Judge Q&A Compendium](docs/JUDGE_QA.md)
   - [Final 5-Minute Demo Script](docs/FINAL_DEMO_SCRIPT.md)
