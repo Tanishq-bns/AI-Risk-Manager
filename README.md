@@ -9,7 +9,7 @@
 
 > **"Risk is not the same as loss. A suspicious return does not automatically justify high-friction merchant intervention."**
 
-AI Risk Manager is a defense-only, economically-aware risk decisioning platform engineered for Indian e-commerce and merchant payments (Razorpay Buildathon 2026). At checkout or return initiation, it evaluates point-in-time return abuse risk ($p_{\text{return\_abuse}}$), models asymmetric merchant losses and shopper friction costs, and selects the least-intrusive optimal intervention (A0–A4) to maximize net merchant value under a strict $\le 150\text{ ms}$ P95 synchronous SLA.
+AI Risk Manager is a defense-only, economically-aware risk decisioning platform engineered for Indian e-commerce and merchant payments (Razorpay Buildathon 2026). At checkout or return initiation, it evaluates point-in-time return abuse risk (`p_return_abuse` $\in [0, 1]$), models asymmetric merchant losses and shopper friction costs, and selects the least-intrusive optimal intervention (A0–A4) to maximize net merchant value under a strict $\le 150\text{ ms}$ P95 synchronous SLA.
 
 ---
 
@@ -39,7 +39,7 @@ $$\text{Expected Net Value}(a) = \text{Recovery Value} - \text{Expected Loss}(a)
 
 The AI Risk Manager implements a layered, evidence-backed decisioning pipeline:
 1. **Point-in-Time Feature Engineering:** 17 deterministic behavioral features extracted in $\le 5\text{ ms}$ with zero temporal leakage.
-2. **Phase 4 ML Cascade (Numerical Authority):** Tier 0 XGBoost classifier coupled with Monotonic Isotonic Calibration outputs calibrated probability $p_{\text{return\_abuse}} \in [0, 1]$ and assigns risk bands (`LOW`, `MEDIUM`, `HIGH`, `CRITICAL`).
+2. **Phase 4 ML Cascade (Numerical Authority):** Tier 0 XGBoost classifier coupled with Monotonic Isotonic Calibration outputs calibrated probability `p_return_abuse` $\in [0, 1]$ and assigns risk bands (`LOW`, `MEDIUM`, `HIGH`, `CRITICAL`).
 3. **Phase 5 Economic Policy Engine (Action Authority):** Random Forest loss estimator combined with a LinUCB contextual multi-armed bandit dynamically evaluates candidate actions (A0–A4) under strict merchant guardrails.
 4. **Phase 6 Passive Multi-Agent Sentinels:** Asynchronous LangGraph agents (Investigator, Verifier, Action Orchestrator) run in the background to explain decisions, audit invariants, and detect prompt injection without ever blocking or altering numerical scores.
 5. **Zero-Docker Portability:** 100% locally runnable with SQLite async and in-process fallbacks.
