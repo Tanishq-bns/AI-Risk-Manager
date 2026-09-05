@@ -297,7 +297,7 @@ git clone <repo-url>
 cd AI-Risk-Manager
 py -3.13 -m venv .venv
 .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -e ".[all]"
 
 # 2. Generate Synthetic Dataset (Seed 42)
 python scripts/generate_synthetic_data.py
