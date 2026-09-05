@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # PRD.md — Product Requirements
 
 **Document status:** Target product requirements for a system with no current implementation.

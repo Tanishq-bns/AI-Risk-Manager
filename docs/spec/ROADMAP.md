@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # ROADMAP.md — Execution Plan
 
 **Document status:** Planned execution roadmap. No repository exists yet — Phase 0 below reflects that starting state explicitly rather than assuming a prior codebase. See SUMMARY.md for live status tracking once implementation begins.

@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # SUMMARY.md — State Tracking
 
 **Last updated:** Phase 6 completion. Phases 1, 2, 3, 4, 5, and 6 have been implemented and verified with 113 passing tests.

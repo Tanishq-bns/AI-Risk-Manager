@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # TRD.md — Technical Requirements
 
 **Document status:** Target technical specification for a system with no current implementation. Every schema, contract, and default value below is the intended design and must be treated as the source of truth that implementation code is written *against* — not descriptions of existing code.

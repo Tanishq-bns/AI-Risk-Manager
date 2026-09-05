@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # SPEC.md — AI Risk Manager: Real-Time Return-Risk Scorer & Intervention Sentinel
 
 **Buildathon Track:** Track 02 — AI Risk Manager (Razorpay Buildathon)

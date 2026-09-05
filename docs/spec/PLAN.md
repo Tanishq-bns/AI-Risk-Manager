@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # PLAN.md — Atomic Task System
 
 **Document status:** Planned task breakdown for a system with no existing implementation. Task IDs are stable identifiers (`T-<subsystem>-<n>`) intended to be referenced from commits/PRs once implementation begins. Phases correspond to ROADMAP.md phases.

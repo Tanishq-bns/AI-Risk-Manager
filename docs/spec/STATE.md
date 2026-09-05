@@ -1,3 +1,5 @@
+> Relocated from repo root to docs/spec/ on 2026-09-05 for repository organization; content unchanged. Cited throughout the codebase as "TRD.md §X" etc. — see docstrings.
+
 # STATE.md — Architectural Decision Records
 
 **Document status:** All ADRs below describe planned decisions for a system that does not yet have an implementation. Status field on each ADR is `PROPOSED` throughout this document until Phase 17 (ROADMAP.md) reconciles it against real implementation.
