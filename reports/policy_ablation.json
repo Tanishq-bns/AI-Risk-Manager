@@ -1,0 +1,33 @@
+{
+  "policy_A_threshold": {
+    "name": "Policy A: Fixed Risk Threshold (p >= 0.50 -> A4)",
+    "intervention_count": 83,
+    "intervention_rate_pct": 48.8,
+    "loss_avoided_inr": 112538.92,
+    "friction_cost_inr": 48.62,
+    "operational_cost_inr": 12450.0,
+    "net_merchant_value_inr": 100040.29,
+    "margin_lift_bps": 1731.6,
+    "false_positive_count": 5
+  },
+  "policy_B_friction_blind": {
+    "name": "Policy B: Friction-Blind Economic Optimizer",
+    "intervention_count": 83,
+    "intervention_rate_pct": 48.8,
+    "loss_avoided_inr": 112375.78,
+    "friction_cost_inr": 48.62,
+    "operational_cost_inr": 12270.0,
+    "net_merchant_value_inr": 100057.16,
+    "margin_lift_bps": 1731.9
+  },
+  "policy_C_production": {
+    "name": "Policy C: Production (Risk + Economics + Guardrails)",
+    "intervention_count": 83,
+    "intervention_rate_pct": 48.8,
+    "loss_avoided_inr": 84987.15,
+    "friction_cost_inr": 16.21,
+    "operational_cost_inr": 4580.0,
+    "net_merchant_value_inr": 80390.94,
+    "margin_lift_bps": 1391.5
+  }
+}

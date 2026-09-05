@@ -1,0 +1,32 @@
+{
+  "model_type": "RANDOM_FOREST_REGRESSOR",
+  "model_version": "v1.0.0-rf-econ",
+  "feature_schema_version": "v1",
+  "trained_at": "2026-09-04T09:38:33.246020+00:00",
+  "random_seed": 42,
+  "input_feature_count": 15,
+  "numeric_features": [
+    "p_return_abuse",
+    "order_value",
+    "reverse_logistics_cost",
+    "estimated_item_recovery_value",
+    "customer_return_rate",
+    "prior_return_value",
+    "prior_return_frequency",
+    "customer_order_count",
+    "customer_return_count",
+    "cod_flag",
+    "days_since_purchase",
+    "friction_cost",
+    "operational_cost"
+  ],
+  "categorical_features": [
+    "action",
+    "product_category"
+  ],
+  "train_samples": 3950,
+  "val_samples": 845,
+  "test_samples": 850,
+  "n_estimators": 100,
+  "max_depth": 6
+}

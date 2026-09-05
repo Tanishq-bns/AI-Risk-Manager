@@ -1,0 +1,89 @@
+{
+  "evaluation_timestamp": "2026-09-05T07:01:58.402617+00:00",
+  "dataset_type": "SYNTHETIC_DATA_TEMPORAL_SPLIT",
+  "disclaimer": "SYNTHETIC DATA / DEMONSTRATION VALIDATION \u2014 Not measured on live merchant production traffic.",
+  "random_seed": 42,
+  "tier0_risk_model": {
+    "model_version": "v1.0.0-xgb-calibrated",
+    "sample_count": 170,
+    "positive_sample_count": 78,
+    "negative_sample_count": 92,
+    "base_rate": 0.4588,
+    "pr_auc": 0.95122,
+    "roc_auc": 0.978261,
+    "precision_at_0_5": 0.939759,
+    "recall_at_0_5": 1.0,
+    "f1_score_at_0_5": 0.968944,
+    "confusion_matrix": {
+      "true_negatives": 87,
+      "false_positives": 5,
+      "false_negatives": 0,
+      "true_positives": 78
+    },
+    "false_positive_rate": 0.054348,
+    "false_negative_rate": 0.0,
+    "brier_score": 0.02561,
+    "expected_calibration_error": 0.027028,
+    "max_calibration_error": 0.5948,
+    "risk_band_stratification": {
+      "LOW": {
+        "sample_count": 87,
+        "abuse_count": 0,
+        "actual_abuse_rate": 0.0,
+        "mean_calibrated_prob": 0.0
+      },
+      "MEDIUM": {
+        "sample_count": 1,
+        "abuse_count": 0,
+        "actual_abuse_rate": 0.0,
+        "mean_calibrated_prob": 0.5948
+      },
+      "HIGH": {
+        "sample_count": 0,
+        "abuse_count": 0,
+        "actual_abuse_rate": 0.0,
+        "mean_calibrated_prob": 0.0
+      },
+      "CRITICAL": {
+        "sample_count": 82,
+        "abuse_count": 78,
+        "actual_abuse_rate": 0.9512,
+        "mean_calibrated_prob": 1.0
+      }
+    }
+  },
+  "economic_reward_model": {
+    "model_version": "v1.0.0-rf-econ",
+    "sample_count": 850,
+    "mae_inr": 49.86,
+    "rmse_inr": 103.3,
+    "r2_score": 0.9623,
+    "action_level_metrics": {
+      "A0": {
+        "sample_count": 170,
+        "mae_inr": 0.0,
+        "rmse_inr": 0.0
+      },
+      "A1": {
+        "sample_count": 170,
+        "mae_inr": 38.48,
+        "rmse_inr": 72.16
+      },
+      "A2": {
+        "sample_count": 170,
+        "mae_inr": 60.19,
+        "rmse_inr": 110.97
+      },
+      "A3": {
+        "sample_count": 170,
+        "mae_inr": 63.61,
+        "rmse_inr": 110.68
+      },
+      "A4": {
+        "sample_count": 170,
+        "mae_inr": 87.0,
+        "rmse_inr": 153.57
+      }
+    }
+  }
+}

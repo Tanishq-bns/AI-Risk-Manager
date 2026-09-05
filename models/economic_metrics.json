@@ -1,0 +1,42 @@
+{
+  "evaluation_timestamp": "2026-09-04T09:38:33.245663+00:00",
+  "test_sample_count": 850,
+  "mae": 49.858,
+  "rmse": 103.3003,
+  "r2_score": 0.96232,
+  "worst_case_error": 644.2345,
+  "prediction_distribution": {
+    "mean": 297.6697,
+    "std": 515.277,
+    "min": -120.0,
+    "p50": 0.0,
+    "max": 2178.4897
+  },
+  "action_level_metrics": {
+    "A0": {
+      "mae": 0.0,
+      "rmse": 0.0,
+      "sample_count": 170
+    },
+    "A1": {
+      "mae": 38.4801,
+      "rmse": 72.1575,
+      "sample_count": 170
+    },
+    "A2": {
+      "mae": 60.1922,
+      "rmse": 110.9748,
+      "sample_count": 170
+    },
+    "A3": {
+      "mae": 63.6137,
+      "rmse": 110.6807,
+      "sample_count": 170
+    },
+    "A4": {
+      "mae": 87.0039,
+      "rmse": 153.5658,
+      "sample_count": 170
+    }
+  }
+}

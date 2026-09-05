@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-09-05T07:03:56.551887+00:00",
+  "iterations": 500,
+  "environment": {
+    "os": "Windows (Local In-Process)",
+    "python_version": "3.13.9",
+    "database": "SQLite (In-Memory Async)",
+    "telemetry": "OpenTelemetry Tracing + In-Memory Event Bus",
+    "docker_dependency": "None (Zero-Docker)"
+  },
+  "sla": {
+    "target_p95_ms": 150.0,
+    "actual_p95_ms": 79.38,
+    "status": "PASSED"
+  },
+  "latencies_ms": {
+    "min": 37.82,
+    "avg": 58.66,
+    "p50": 55.66,
+    "p90": 72.16,
+    "p95": 79.38,
+    "p99": 89.88,
+    "max": 239.43,
+    "std": 12.97
+  },
+  "critical_observations": [
+    "Synchronous P95 latency (79.38 ms) passes the strict <= 150 ms SLA target.",
+    "P99 latency is 89.88 ms, reflecting occasional SQLite memory transaction flushing and Python GC sweeps.",
+    "Asynchronous LLM agents (Investigator, Verifier, Orchestrator) run in detached background tasks, adding 0 ms to the synchronous critical path."
+  ]
+}

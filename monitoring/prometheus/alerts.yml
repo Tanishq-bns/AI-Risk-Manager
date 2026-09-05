@@ -1,0 +1,94 @@
+# ==============================================================================
+# AI Risk Manager: Production Prometheus Alert Rules (Phase 8)
+# ==============================================================================
+
+groups:
+  - name: ai_risk_manager_alerts
+    rules:
+      # 1. Service Unavailable
+      - alert: ServiceUnavailable
+        expr: ai_risk_manager_up == 0
+        for: 30s
+        labels:
+          severity: critical
+          service: ai-risk-manager
+        annotations:
+          summary: "AI Risk Manager service is down"
+          description: "The application service health check reports down or scrape has failed for > 30 seconds."
+
+      # 2. High API Error Rate
+      - alert: HighAPIErrorRate
+        expr: (sum(rate(http_errors_total[2m])) / sum(rate(http_requests_total[2m]))) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+          service: ai-risk-manager
+        annotations:
+          summary: "High HTTP error rate (> 5%)"
+          description: "HTTP error rate exceeds 5% of total incoming requests over a 2-minute window."
+
+      # 3. High Risk Scoring Latency (SLA Breach)
+      - alert: HighRiskScoringLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(risk_decision_duration_seconds_bucket[2m])) by (le)) > 0.150
+        for: 2m
+        labels:
+          severity: warning
+          service: ai-risk-manager
+        annotations:
+          summary: "Synchronous risk scoring P95 latency exceeds 150ms budget"
+          description: "The 95th percentile risk cascade scoring latency is currently {{ $value }}s, exceeding the 150ms SLA target."
+
+      # 4. Risk Scoring Fallback Spike
+      - alert: RiskScoringFallbackSpike
+        expr: sum(rate(risk_fallback_total[3m])) > 0.1
+        for: 1m
+        labels:
+          severity: warning
+          service: ai-risk-manager
+        annotations:
+          summary: "Spike in ML model cascade fallback degradation"
+          description: "Risk scoring is falling back from Tier 0 XGBoost to Tier 1 Isolation Forest or Tier 2 Rules engine at an elevated rate (>0.1/s)."
+
+      # 5. Agent Workflow Failure Spike
+      - alert: AgentWorkflowFailureSpike
+        expr: sum(rate(agent_failures_total[3m])) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+          service: ai-risk-manager
+        annotations:
+          summary: "Elevated failure rate in multi-agent background workflows"
+          description: "Phase 6 LangGraph agent nodes are encountering unhandled execution failures at {{ $value }}/s."
+
+      # 6. Gemini Fallback Spike
+      - alert: GeminiFallbackSpike
+        expr: (sum(rate(agent_fallback_total[5m])) / sum(rate(agent_workflow_total[5m]))) > 0.50
+        for: 3m
+        labels:
+          severity: info
+          service: ai-risk-manager
+        annotations:
+          summary: "High rate of deterministic agent fallback (> 50%)"
+          description: "Over 50% of agent executions are using deterministic fallback due to missing API keys, rate limits, or network timeouts."
+
+      # 7. Persistence Failure Spike
+      - alert: PersistenceFailureSpike
+        expr: sum(rate(persistence_failure_total[2m])) > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: ai-risk-manager
+        annotations:
+          summary: "Database persistence failures detected"
+          description: "Database write or commit operations are failing at {{ $value }}/s; risk decisions may not be properly committed to the ledger."
+
+      # 8. Human Review Escalation Spike
+      - alert: HumanReviewSpike
+        expr: sum(rate(human_review_required_total[5m])) > 0.5
+        for: 3m
+        labels:
+          severity: warning
+          service: ai-risk-manager
+        annotations:
+          summary: "Unusual surge in cases routed to manual human review"
+          description: "Human review queue escalation rate is {{ $value }}/s, indicating either an abuse attack wave or misconfigured conservative policy guardrails."

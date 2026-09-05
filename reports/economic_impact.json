@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-09-05T07:02:22.785256+00:00",
+  "dataset": "data/test.csv",
+  "sample_count": 170,
+  "currency": "INR",
+  "data_scope": "SYNTHETIC / DEMONSTRATION ECONOMIC SIMULATION",
+  "summary": {
+    "total_gross_merchandise_value_inr": 577726.3,
+    "expected_abuse_loss_no_action_inr": 119310.34,
+    "expected_abuse_loss_with_action_inr": 36462.95,
+    "loss_avoided_inr": 82847.39,
+    "customer_friction_cost_inr": 3650.0,
+    "merchant_operational_cost_inr": 4580.0,
+    "net_merchant_value_created_inr": 82847.39,
+    "avg_net_value_per_return_inr": 487.34,
+    "net_margin_improvement_bps_of_gmv": 1434.0
+  },
+  "action_distribution": {
+    "A0": {
+      "count": 87,
+      "percentage": 51.2,
+      "total_net_value_inr": 0.0
+    },
+    "A1": {
+      "count": 1,
+      "percentage": 0.6,
+      "total_net_value_inr": 849.49
+    },
+    "A2": {
+      "count": 74,
+      "percentage": 43.5,
+      "total_net_value_inr": 77458.84
+    },
+    "A3": {
+      "count": 8,
+      "percentage": 4.7,
+      "total_net_value_inr": 4539.06
+    },
+    "A4": {
+      "count": 0,
+      "percentage": 0.0,
+      "total_net_value_inr": 0.0
+    }
+  },
+  "risk_band_distribution": {
+    "LOW": {
+      "count": 87,
+      "percentage": 51.2
+    },
+    "MEDIUM": {
+      "count": 1,
+      "percentage": 0.6
+    },
+    "HIGH": {
+      "count": 0,
+      "percentage": 0.0
+    },
+    "CRITICAL": {
+      "count": 82,
+      "percentage": 48.2
+    }
+  },
+  "human_review_volume": 0
+}

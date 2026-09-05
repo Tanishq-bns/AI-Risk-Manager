@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-09-05T07:02:32.658984+00:00",
+  "dataset": "data/test.csv",
+  "sample_count": 170,
+  "currency": "INR",
+  "scenarios": {
+    "best_case": {
+      "friction_multiplier": 0.5,
+      "operational_cost_multiplier": 0.7,
+      "mitigation_multiplier": 1.15,
+      "recovery_multiplier": 1.2,
+      "logistics_multiplier": 0.8,
+      "total_gmv_inr": 577726.3,
+      "loss_no_action_inr": 66339.69,
+      "loss_with_action_inr": 8418.84,
+      "loss_avoided_inr": 57920.85,
+      "customer_friction_inr": 8.1,
+      "operational_cost_inr": 7185.98,
+      "net_merchant_value_inr": 57920.85,
+      "margin_improvement_bps": 1002.6,
+      "action_distribution": {
+        "A0": 87,
+        "A1": 0,
+        "A2": 18,
+        "A3": 4,
+        "A4": 61
+      }
+    },
+    "base_case": {
+      "friction_multiplier": 1.0,
+      "operational_cost_multiplier": 1.0,
+      "mitigation_multiplier": 1.0,
+      "recovery_multiplier": 1.0,
+      "logistics_multiplier": 1.0,
+      "total_gmv_inr": 577726.3,
+      "loss_no_action_inr": 118462.02,
+      "loss_with_action_inr": 18730.26,
+      "loss_avoided_inr": 99731.75,
+      "customer_friction_inr": 16.21,
+      "operational_cost_inr": 11750.69,
+      "net_merchant_value_inr": 99731.75,
+      "margin_improvement_bps": 1726.3,
+      "action_distribution": {
+        "A0": 87,
+        "A1": 0,
+        "A2": 6,
+        "A3": 1,
+        "A4": 76
+      }
+    },
+    "worst_case_stress": {
+      "friction_multiplier": 2.5,
+      "operational_cost_multiplier": 1.8,
+      "mitigation_multiplier": 0.75,
+      "recovery_multiplier": 0.6,
+      "logistics_multiplier": 1.4,
+      "total_gmv_inr": 577726.3,
+      "loss_no_action_inr": 222896.87,
+      "loss_with_action_inr": 86497.72,
+      "loss_avoided_inr": 136399.15,
+      "customer_friction_inr": 40.52,
+      "operational_cost_inr": 21151.24,
+      "net_merchant_value_inr": 136399.15,
+      "margin_improvement_bps": 2361.0,
+      "action_distribution": {
+        "A0": 87,
+        "A1": 0,
+        "A2": 6,
+        "A3": 1,
+        "A4": 76
+      }
+    }
+  },
+  "friction_sweep": [
+    {
+      "friction_multiplier": 0.2,
+      "net_merchant_value_inr": 99744.72,
+      "margin_improvement_bps": 1726.5,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 0.5,
+      "net_merchant_value_inr": 99739.86,
+      "margin_improvement_bps": 1726.4,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 1.0,
+      "net_merchant_value_inr": 99731.75,
+      "margin_improvement_bps": 1726.3,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 1.5,
+      "net_merchant_value_inr": 99723.65,
+      "margin_improvement_bps": 1726.1,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 2.0,
+      "net_merchant_value_inr": 99715.54,
+      "margin_improvement_bps": 1726.0,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 2.5,
+      "net_merchant_value_inr": 99707.44,
+      "margin_improvement_bps": 1725.9,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 3.0,
+      "net_merchant_value_inr": 99699.34,
+      "margin_improvement_bps": 1725.7,
+      "a0_count": 87,
+      "a2_count": 6
+    },
+    {
+      "friction_multiplier": 4.0,
+      "net_merchant_value_inr": 99683.13,
+      "margin_improvement_bps": 1725.4,
+      "a0_count": 87,
+      "a2_count": 6
+    }
+  ]
+}

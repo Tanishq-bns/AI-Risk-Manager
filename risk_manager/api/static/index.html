@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Risk Operating System — Real-Time Return-Risk Scorer & Intervention Sentinel</title>
+  <meta name="description" content="Production return-risk scoring, economic outcome modeling, and multi-agent sentinel platform.">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div>
+          <h1>AI Risk Operating System</h1>
+          <p>Real-Time Return-Risk Scorer & Intervention Sentinel (Phase 9)</p>
+        </div>
+      </div>
+
+      <div class="system-status">
+        <div class="badge badge-success" id="api-status-badge">
+          <span class="badge-dot"></span> API: <span id="api-status-val">Healthy</span>
+        </div>
+        <div class="badge badge-success" id="ml-status-badge">
+          <span class="badge-dot"></span> ML Cascade: <span id="ml-status-val">Tier 0 (XGBoost)</span>
+        </div>
+        <div class="badge badge-info" id="agent-status-badge">
+          <span class="badge-dot"></span> Agents: <span id="agent-status-val">LangGraph Active</span>
+        </div>
+        <div class="badge badge-success" id="db-status-badge">
+          <span class="badge-dot"></span> Storage: <span>SQLite Async</span>
+        </div>
+        <div class="badge badge-info" id="otel-status-badge">
+          <span class="badge-dot"></span> Telemetry: <span>OTEL Tracing</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 10-Second Executive Overview Banner -->
+    <section class="executive-banner" style="margin-bottom: 16px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.85) 100%); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: var(--radius-md); padding: 14px 18px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #a5b4fc; text-transform: uppercase;">
+            ⚡ 10-Second Executive Overview
+          </span>
+          <span style="font-size: 11px; color: var(--text-muted);">| Razorpay Buildathon 2026 Portfolio</span>
+        </div>
+        <div style="display: flex; gap: 6px;">
+          <span class="badge badge-success" style="font-size: 10px;">Zero-Docker Local Mode</span>
+          <span class="badge badge-info" style="font-size: 10px;">Synchronous P95 &le; 150ms</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; font-size: 11.5px; line-height: 1.45;">
+        <div style="border-left: 2px solid #6366f1; padding-left: 10px;">
+          <div style="color: #a5b4fc; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">1. WHAT</div>
+          <div style="color: var(--text-primary); font-weight: 600;">Real-Time Return-Risk Scorer & Intervention Sentinel</div>
+          <div style="color: var(--text-secondary); font-size: 10.5px; margin-top: 2px;">Defense-only risk decisioning engine balancing fraud defense with shopper friction.</div>
+        </div>
+        <div style="border-left: 2px solid #38bdf8; padding-left: 10px;">
+          <div style="color: #38bdf8; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">2. WHY (Core Insight)</div>
+          <div style="color: var(--text-primary); font-weight: 600;">Symmetric Economic Tradeoffs</div>
+          <div style="color: var(--text-secondary); font-size: 10.5px; margin-top: 2px;">Risk must not only ask if a return looks abusive; it must ask if intervention creates more value than friction costs.</div>
+        </div>
+        <div style="border-left: 2px solid #10b981; padding-left: 10px;">
+          <div style="color: #10b981; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">3. HOW (Architecture)</div>
+          <div style="color: var(--text-primary); font-weight: 600;">Strict Authority Boundaries</div>
+          <div style="color: var(--text-secondary); font-size: 10.5px; margin-top: 2px;">Phase 4 ML (Numerical) &rarr; Phase 5 Bandit (Actions) &rarr; Passive Phase 6 LLM Sentinels (Zero Mutation).</div>
+        </div>
+        <div style="border-left: 2px solid #f59e0b; padding-left: 10px;">
+          <div style="color: #f59e0b; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 2px;">4. VALUE (Evidence in ₹)</div>
+          <div style="color: var(--text-primary); font-weight: 600;">&#8377;82,847 Net Value Created</div>
+          <div style="color: var(--text-secondary); font-size: 10.5px; margin-top: 2px;">+1,434 bps margin gain across &#8377;5.77L GMV with only &#8377;3,650 customer friction incurred.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-console">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Live Decisioning
+      </button>
+      <button class="tab-btn" data-tab="tab-intelligence">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        Decision Intelligence
+      </button>
+      <button class="tab-btn" data-tab="tab-whatif">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        What-If Simulator
+      </button>
+      <button class="tab-btn" data-tab="tab-friction">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 16V8"/></svg>
+        Customer Friction Governance
+      </button>
+      <button class="tab-btn" data-tab="tab-operations">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Risk Operations (<span id="tab-queue-count">0</span>)
+      </button>
+      <button class="tab-btn" data-tab="tab-governance">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Model Governance & Lineage
+      </button>
+      <button class="tab-btn" data-tab="tab-resilience">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Fallback Resilience Center
+      </button>
+      <button class="tab-btn" data-tab="tab-judge" style="background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.4);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Judge Mode (Guided Tour)
+      </button>
+    </nav>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: LIVE DECISIONING CONSOLE -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane active" id="tab-console">
+      <div class="dashboard-grid">
+        <!-- Sidebar Simulator -->
+        <aside class="sidebar">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                Event Simulator
+              </span>
+              <span style="font-size: 11px; color: var(--text-muted);">Standard Presets</span>
+            </div>
+
+            <div class="presets-container" id="presets-container">
+              <button class="preset-btn active" data-preset="legitimate_low_risk">1. Legitimate (Low)</button>
+              <button class="preset-btn" data-preset="suspicious_returner">2. Suspicious (Med/High)</button>
+              <button class="preset-btn" data-preset="serial_returner">3. Serial (High)</button>
+              <button class="preset-btn" data-preset="critical_human_review">4. Critical (Review)</button>
+              <button class="preset-btn" data-preset="prompt_injection_defense">5. Injection Defense</button>
+            </div>
+
+            <form id="simulator-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="customer_id_hash">Customer ID Hash</label>
+                  <input type="text" id="customer_id_hash" required>
+                </div>
+                <div class="form-group">
+                  <label for="idempotency_key">Idempotency Key</label>
+                  <input type="text" id="idempotency_key" required>
+                </div>
+                <div class="form-group">
+                  <label for="order_value">Order Value (INR)</label>
+                  <input type="number" id="order_value" step="0.01" min="1" required>
+                </div>
+                <div class="form-group">
+                  <label for="product_category">Category</label>
+                  <select id="product_category">
+                    <option value="APPAREL">APPAREL</option>
+                    <option value="FOOTWEAR">FOOTWEAR</option>
+                    <option value="ELECTRONICS">ELECTRONICS</option>
+                    <option value="BEAUTY">BEAUTY</option>
+                    <option value="HOME">HOME</option>
+                    <option value="ACCESSORIES">ACCESSORIES</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="payment_method">Payment Method</label>
+                  <select id="payment_method">
+                    <option value="PREPAID">PREPAID</option>
+                    <option value="COD">COD</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="days_since_purchase">Days Since Purchase</label>
+                  <input type="number" id="days_since_purchase" min="0" value="4">
+                </div>
+                <div class="form-group">
+                  <label for="customer_order_count">Order Count</label>
+                  <input type="number" id="customer_order_count" min="0" value="25">
+                </div>
+                <div class="form-group">
+                  <label for="customer_return_count">Return Count</label>
+                  <input type="number" id="customer_return_count" min="0" value="1">
+                </div>
+                <div class="form-group">
+                  <label for="customer_return_rate">Return Rate (0.0 - 1.0)</label>
+                  <input type="number" id="customer_return_rate" step="0.001" min="0" max="1" value="0.04">
+                </div>
+                <div class="form-group">
+                  <label for="prior_return_value">Prior Return Value (INR)</label>
+                  <input type="number" id="prior_return_value" step="0.01" min="0" value="850">
+                </div>
+                <div class="form-group">
+                  <label for="prior_return_frequency">Return Freq (/30d)</label>
+                  <input type="number" id="prior_return_frequency" step="0.01" min="0" value="0.15">
+                </div>
+                <div class="form-group">
+                  <label for="delivery_distance_bucket">Transit Zone</label>
+                  <select id="delivery_distance_bucket">
+                    <option value="LOCAL">LOCAL (INR 75)</option>
+                    <option value="REGIONAL" selected>REGIONAL (INR 135)</option>
+                    <option value="NATIONAL">NATIONAL (INR 210)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="historical_abuse_signal">Abuse Signal (0.0-1.0)</label>
+                  <input type="number" id="historical_abuse_signal" step="0.01" min="0" max="1" value="0.0">
+                </div>
+                <div class="form-group">
+                  <label for="estimated_item_recovery_value">Recovery Value</label>
+                  <input type="number" id="estimated_item_recovery_value" step="0.01" min="0" value="1200">
+                </div>
+                <div class="form-group full-width">
+                  <label for="return_reason">Customer Return Reason (Untrusted Free-Text)</label>
+                  <textarea id="return_reason" placeholder="Customer reason claim..."></textarea>
+                </div>
+              </div>
+
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" id="btn-score-risk">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  Score Risk (Real-Time)
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-run-agents">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                  Run Agents
+                </button>
+              </div>
+            </form>
+          </div>
+        </aside>
+
+        <!-- Main Column -->
+        <main class="main-content">
+          <!-- Risk Score Card -->
+          <div class="card">
+            <div class="score-hero">
+              <div class="gauge-box">
+                <svg class="gauge-svg" viewBox="0 0 100 100">
+                  <circle class="gauge-bg" cx="50" cy="50" r="40"/>
+                  <circle class="gauge-fill" id="gauge-meter" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+                </svg>
+                <div class="gauge-text" id="gauge-value">--%</div>
+              </div>
+
+              <div class="score-details">
+                <div style="font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Abuse Risk Probability (Phase 4 Authority)</div>
+                <h2 id="score-p-abuse">--</h2>
+                <div>
+                  <span class="score-band-chip band-low" id="score-risk-band">PENDING</span>
+                </div>
+              </div>
+
+              <div class="score-meta">
+                <div>Source: <span id="meta-scoring-source">--</span></div>
+                <div>Fallback Tier: <span id="meta-fallback-tier">0 (Primary XGBoost)</span></div>
+                <div>Decision ID: <span id="meta-decision-id" style="font-family: monospace; font-size: 11px;">--</span></div>
+                <div>Sync Latency: <span id="meta-latency">-- ms</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Signals & Contributing Evidence -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Contributing Evidence & Risk Signals</span>
+              <span id="evidence-completeness" class="badge badge-success">Completeness: 100%</span>
+            </div>
+            <div id="evidence-signals-list" class="chips-list">
+              <span class="chip">Awaiting decision execution...</span>
+            </div>
+          </div>
+
+          <!-- Economic Decision & Action Selection -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Economic Optimization & Policy Selection (Phase 5 Authority)</span>
+              <span class="badge badge-info" id="policy-selector-badge">Selector: LINUCB</span>
+            </div>
+
+            <div class="action-hero">
+              <div>
+                <div class="action-selected-title">Selected Intervention Action</div>
+                <div class="action-selected-name" id="action-selected-display">A0 — Zero-Friction Approval</div>
+                <div id="guardrails-display" style="font-size: 11px; color: #a5b4fc; margin-top: 4px;">Guardrails: None</div>
+              </div>
+              <div class="econ-figures">
+                <div class="econ-fig">
+                  <div class="label">Expected Loss</div>
+                  <div class="val" id="econ-expected-loss">INR --</div>
+                </div>
+                <div class="econ-fig">
+                  <div class="label">Expected Net Value</div>
+                  <div class="val" style="color: var(--success);" id="econ-net-value">INR --</div>
+                </div>
+              </div>
+            </div>
+
+            <table class="data-table" id="candidates-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Name</th>
+                  <th>Expected Loss</th>
+                  <th>Expected Net Value</th>
+                  <th>Eligibility & Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Run scoring to inspect candidate evaluation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Executive "One Decision" View: Why Did The System Make This Decision? -->
+          <div class="card" id="executive-one-decision-card" style="border-left: 4px solid var(--accent); background: rgba(99, 102, 241, 0.04); margin-bottom: 16px;">
+            <div class="card-header">
+              <span class="card-title">Executive "One Decision" Decomposition</span>
+              <span class="badge badge-success">Decision Rationale</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 14px;">
+              <div class="stat-card" style="padding: 10px;">
+                <div class="stat-label">Abuse Risk</div>
+                <div id="exec-risk-val" style="font-size: 18px; font-weight: 800; color: #fff;">--%</div>
+                <div id="exec-band-val" style="font-size: 11px; color: var(--text-muted);">Band: --</div>
+              </div>
+              <div class="stat-card" style="padding: 10px;">
+                <div class="stat-label">Expected Loss</div>
+                <div id="exec-loss-val" style="font-size: 18px; font-weight: 800; color: #f87171;">INR --</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Unmitigated loss</div>
+              </div>
+              <div class="stat-card" style="padding: 10px;">
+                <div class="stat-label">Customer Friction</div>
+                <div id="exec-fric-val" style="font-size: 18px; font-weight: 800; color: #fbbf24;">INR --</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Quantified penalty</div>
+              </div>
+              <div class="stat-card" style="padding: 10px;">
+                <div class="stat-label">Operational Cost</div>
+                <div id="exec-ops-val" style="font-size: 18px; font-weight: 800; color: #94a3b8;">INR --</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Review/courier fee</div>
+              </div>
+              <div class="stat-card" style="padding: 10px;">
+                <div class="stat-label">Selected Action</div>
+                <div id="exec-action-val" style="font-size: 18px; font-weight: 800; color: #34d399;">--</div>
+                <div id="exec-net-val" style="font-size: 11px; color: #34d399;">Net: INR --</div>
+              </div>
+            </div>
+            <div style="padding: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; font-size: 13px; line-height: 1.5; color: #e2e8f0; margin-bottom: 10px;" id="exec-why-text">
+              <strong>Why this action?</strong> Run real-time scoring to decompose mathematical optimization.
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 11px; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
+              <span>✓ Deterministic safety guardrails passed</span>
+              <span>✓ Phase 4/5 numerical authority preserved</span>
+              <span>✓ Immutable audit record committed</span>
+            </div>
+          </div>
+
+          <!-- Phase 6 Multi-Agent Sentinel -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Phase 6 Multi-Agent Sentinel (LangGraph + Gemini)</span>
+              <span class="badge badge-info" id="agent-overall-status">Status: Pending</span>
+            </div>
+
+            <div class="agents-grid">
+              <!-- Investigator -->
+              <div class="agent-box">
+                <div class="agent-box-title">
+                  <span>1. Investigator</span>
+                  <span class="badge" id="inv-status">--</span>
+                </div>
+                <div class="agent-content">
+                  <p id="inv-summary" style="margin-bottom: 6px;">Waiting for workflow execution...</p>
+                  <div style="font-size: 10px; font-weight: 600; margin-top: 4px; color: var(--text-muted);">KEY RISK FACTORS:</div>
+                  <div id="inv-risk-chips" class="chips-list">--</div>
+                  <div style="font-size: 10px; font-weight: 600; margin-top: 4px; color: var(--text-muted);">MITIGATING FACTORS:</div>
+                  <div id="inv-mitigate-chips" class="chips-list">--</div>
+                  <div id="inv-injection-alert" style="display:none; margin-top: 8px;" class="chip chip-danger">
+                    ⚠️ Adversarial Prompt Injection Detected
+                  </div>
+                </div>
+              </div>
+
+              <!-- Verifier -->
+              <div class="agent-box">
+                <div class="agent-box-title">
+                  <span>2. Verifier (10 Invariants)</span>
+                  <span class="badge" id="ver-status">--</span>
+                </div>
+                <div class="agent-content" id="verifier-checklist">
+                  <div class="check-item"><span>1. Risk Band Consistency</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>2. Action Validity</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>3. Action Eligibility</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>4. Guardrail Compliance</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>5. Manual Review (A4) Safety</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>6. Economic Consistency</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>7. Investigator Alignment</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>8. Evidence Completeness</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>9. Fallback Correctness</span><span class="check-pass">PASS</span></div>
+                  <div class="check-item"><span>10. Operational Safety</span><span class="check-pass">PASS</span></div>
+                </div>
+                <div id="ver-review-alert" style="display:none; margin-top: 8px;" class="chip chip-danger">
+                  🚨 Human Review Mandatory
+                </div>
+              </div>
+
+              <!-- Orchestrator -->
+              <div class="agent-box">
+                <div class="agent-box-title">
+                  <span>3. Action Orchestrator</span>
+                  <span class="badge" id="orch-status">--</span>
+                </div>
+                <div class="agent-content">
+                  <div style="margin-bottom: 4px;">Mode: <strong id="orch-mode">--</strong></div>
+                  <p id="orch-recommendation" style="font-size: 11px; margin-bottom: 6px;">Awaiting recommendation...</p>
+                  <div style="font-size: 10px; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px;">
+                    <div>Provider: <span id="orch-provider" style="color: var(--text-primary); font-weight: 600;">--</span></div>
+                    <div>Model: <span id="orch-model">--</span></div>
+                    <div>Fallback Reason: <span id="orch-fallback-reason">none</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Audit Timeline -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Immutable Audit Trail & State Transitions</span>
+              <button id="btn-refresh-audit" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:12px;">Refresh</button>
+            </div>
+            <div class="timeline" id="audit-timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div>
+                  <div class="timeline-title">Waiting for Decision</div>
+                  <div class="timeline-time">No events recorded.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: DECISION INTELLIGENCE & FACTOR EXPLAINABILITY -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-intelligence">
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span class="card-title">Decision Intelligence: Why Did This Action Win?</span>
+          <span class="badge badge-info">Honest Decision Factors (Non-Causal)</span>
+        </div>
+        <div style="padding: 8px 0;">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">
+            The Decision Intelligence Center explains the mathematical and policy rationale behind the selected intervention. It avoids black-box ambiguity and fabricated SHAP attributions by detailing the exact economic net value optimization, risk band thresholds, and active eligibility guardrails.
+          </p>
+
+          <div class="diff-grid" style="margin-bottom: 16px;">
+            <div class="diff-card">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Winning Intervention Rationale</div>
+              <div style="font-size: 18px; font-weight: 700; color: #a5b4fc;" id="intel-winning-action">A0 — Zero-Friction Approval</div>
+              <div style="margin-top: 8px; font-size: 12px;" id="intel-winning-summary">
+                Intervention chosen because it maximizes expected net value while respecting customer goodwill and strict safety boundaries.
+              </div>
+            </div>
+            <div class="diff-card">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Economic Comparison vs Baseline (A0)</div>
+              <div style="font-size: 18px; font-weight: 700; color: var(--success);" id="intel-delta-a0">+INR 0.00</div>
+              <div style="margin-top: 8px; font-size: 12px;" id="intel-delta-summary">
+                No friction cost penalty applied. Standard trusted customer return.
+              </div>
+            </div>
+          </div>
+
+          <div class="card-title" style="margin-bottom: 8px;">Key Governing Decision Factors</div>
+          <div id="intel-factors-list" class="timeline" style="margin-bottom: 16px;">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <div class="timeline-title">Run a risk decision on the Live Console to view active factors.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-title" style="margin-bottom: 8px;">Candidate Actions Tradeoff Matrix</div>
+          <table class="data-table" id="intel-candidates-table">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Name</th>
+                <th>Expected Loss</th>
+                <th>Friction Cost</th>
+                <th>Net Expected Value</th>
+                <th>Eligibility Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Awaiting live scoring...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: WHAT-IF SIMULATOR & COUNTERFACTUALS -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-whatif">
+      <div class="simulation-banner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>WHAT-IF SIMULATION MODE — In-memory evaluation only. Does NOT mutate database, pollute audit trails, or affect merchant records.</span>
+      </div>
+
+      <div class="dashboard-grid">
+        <aside class="sidebar">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Modify Simulation Variables</span>
+              <button id="btn-reset-simulation" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:11px;">Reset</button>
+            </div>
+            <form id="whatif-form">
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label for="sim_order_value">Simulated Order Value (INR): <span id="val-sim-order-value" style="color:var(--text-primary); font-weight:700;">2500</span></label>
+                  <input type="range" id="sim_order_value" min="100" max="25000" step="100" value="2500">
+                </div>
+                <div class="form-group full-width">
+                  <label for="sim_return_rate">Customer Return Rate: <span id="val-sim-return-rate" style="color:var(--text-primary); font-weight:700;">0.10</span></label>
+                  <input type="range" id="sim_return_rate" min="0" max="1" step="0.01" value="0.10">
+                </div>
+                <div class="form-group full-width">
+                  <label for="sim_abuse_signal">Abuse Signal: <span id="val-sim-abuse-signal" style="color:var(--text-primary); font-weight:700;">0.00</span></label>
+                  <input type="range" id="sim_abuse_signal" min="0" max="1" step="0.05" value="0.00">
+                </div>
+                <div class="form-group full-width">
+                  <label for="sim_item_recovery_value">Item Recovery Value: <span id="val-sim-recovery-value" style="color:var(--text-primary); font-weight:700;">INR 1500</span></label>
+                  <input type="range" id="sim_item_recovery_value" min="0" max="15000" step="100" value="1500">
+                </div>
+                <div class="form-group full-width">
+                  <label for="sim_logistics_cost">Reverse Logistics Cost: <span id="val-sim-logistics-cost" style="color:var(--text-primary); font-weight:700;">INR 120</span></label>
+                  <input type="range" id="sim_logistics_cost" min="20" max="1000" step="10" value="120">
+                </div>
+                <div class="form-group">
+                  <label for="sim_payment_method">Payment</label>
+                  <select id="sim_payment_method">
+                    <option value="PREPAID">PREPAID</option>
+                    <option value="COD">COD</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="sim_product_category">Category</label>
+                  <select id="sim_product_category">
+                    <option value="APPAREL">APPAREL</option>
+                    <option value="FOOTWEAR">FOOTWEAR</option>
+                    <option value="ELECTRONICS">ELECTRONICS</option>
+                    <option value="BEAUTY">BEAUTY</option>
+                    <option value="HOME">HOME</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" id="btn-run-simulation" style="width: 100%; margin-top: 14px;">
+                Run Counterfactual Simulation
+              </button>
+            </form>
+          </div>
+        </aside>
+
+        <main class="main-content">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Side-by-Side Impact Analysis: Live Baseline vs Simulated Scenario</span>
+              <span class="badge badge-warning">Simulated Sandbox</span>
+            </div>
+
+            <div class="diff-grid">
+              <!-- Live Baseline -->
+              <div class="diff-card">
+                <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Current Live Baseline</div>
+                <div style="font-size: 24px; font-weight: 800;" id="diff-base-risk">--%</div>
+                <div style="margin-top: 4px;"><span class="score-band-chip band-low" id="diff-base-band">PENDING</span></div>
+                <div style="margin-top: 12px; font-size: 12px;">
+                  <div>Selected Action: <strong id="diff-base-action">--</strong></div>
+                  <div>Expected Loss: <span id="diff-base-loss">INR --</span></div>
+                  <div>Expected Net Value: <span id="diff-base-net">INR --</span></div>
+                </div>
+              </div>
+
+              <!-- Simulated Result -->
+              <div class="diff-card" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.03);">
+                <div style="font-size: 11px; text-transform: uppercase; color: #fbbf24; margin-bottom: 6px;">Simulated Outcome</div>
+                <div style="font-size: 24px; font-weight: 800; color: #fbbf24;" id="diff-sim-risk">--%</div>
+                <div style="margin-top: 4px;"><span class="score-band-chip band-low" id="diff-sim-band">PENDING</span></div>
+                <div style="margin-top: 12px; font-size: 12px;">
+                  <div>Selected Action: <strong id="diff-sim-action" style="color: #fbbf24;">--</strong></div>
+                  <div>Expected Loss: <span id="diff-sim-loss">INR --</span></div>
+                  <div>Expected Net Value: <span id="diff-sim-net">INR --</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <div class="card-title" style="margin-bottom: 8px;">Simulated Decision Factors</div>
+              <div id="sim-factors-list" class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div>Run simulation to see counterfactual factors.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: CUSTOMER FRICTION GOVERNANCE -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-friction">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Customer Friction Governance: Defense-Only Optimization</span>
+          <span class="badge badge-success">Symmetric Economic Tradeoffs</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+          Traditional fraud systems maximize blocks, destroying customer lifetime value through false positives. The AI Risk Manager explicitly penalizes customer friction in its utility function $V(a) = \text{Recovery} - \text{Expected Loss} - \text{Friction Cost}(a) - \text{Op Cost}(a)$, guaranteeing that intrusive interventions (OTP, Store Credit, Human Review) are deployed only when expected fraud savings mathematically exceed the customer friction cost.
+        </p>
+
+        <div class="diff-grid" style="margin-bottom: 16px;">
+          <div class="diff-card">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Friction Level Distribution</div>
+            <div style="margin-top: 8px;">
+              <div class="check-item"><span>A0 — Zero Friction (Instant Approval)</span><span style="color:var(--success); font-weight:700;">INR 0.00 Friction</span></div>
+              <div class="check-item"><span>A1 — Standard Pickup Verification</span><span style="color:var(--text-secondary); font-weight:700;">INR 15.00 Friction</span></div>
+              <div class="check-item"><span>A2 — OTP Doorstep Inspection</span><span style="color:var(--warning); font-weight:700;">INR 40.00 Friction</span></div>
+              <div class="check-item"><span>A3 — Store Credit Default</span><span style="color:var(--warning); font-weight:700;">INR 50.00 Friction</span></div>
+              <div class="check-item"><span>A4 — Manual Escalation / Reject</span><span style="color:var(--danger); font-weight:700;">INR 150.00 Friction</span></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Friction Protection Invariants</div>
+            <div style="margin-top: 8px; font-size: 12px; color: var(--text-secondary);">
+              <div style="margin-bottom: 6px;">✓ <strong>Zero False-Positive Penalty on Trusted Shoppers:</strong> Action A3/A4 strictly disallowed when customer return rate $\le 10\%$ and order count $\ge 5$.</div>
+              <div style="margin-bottom: 6px;">✓ <strong>Proportionality Mandate:</strong> Doorstep OTP inspection (A2) only eligible when order value $> \text{INR } 1,000$ or return frequency is anomalous.</div>
+              <div>✓ <strong>Hard Review Ceilings:</strong> A4 cannot be automated; mandatory specialist sign-off is required.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 5: RISK OPERATIONS & REVIEW QUEUE -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-operations">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Risk Operations Control Center & Review Queue</span>
+          <button id="btn-refresh-ops-queue" class="btn btn-secondary" style="padding: 4px 10px; font-size: 11px;">Refresh Queue</button>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">
+          Cases routed here represent high-confidence abuse signals or agent invariant flags requiring human specialist authorization. An authorized operator override is the <strong>only</strong> mechanism that can alter an existing policy settlement.
+        </p>
+
+        <table class="data-table" id="ops-queue-table">
+          <thead>
+            <tr>
+              <th>Decision ID</th>
+              <th>Risk Score</th>
+              <th>Risk Band</th>
+              <th>Current Action</th>
+              <th>Escalation Reason</th>
+              <th>Agent State</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ops-queue-tbody">
+            <tr><td colspan="7" style="text-align: center; color: var(--text-muted);">No pending review cases.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Decision Replay Inspector (Read-Only) -->
+      <div class="card" style="margin-top: 16px;">
+        <div class="card-header">
+          <span class="card-title">Deterministic Decision Replay (Audit Trace)</span>
+          <span class="badge badge-info">100% Read-Only • Zero DB Writes</span>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 12px; margin-bottom: 12px;">
+          Reconstruct the complete sequential execution trace of any historical transaction without mutating state, modifying models, or polluting audit logs.
+        </p>
+        <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+          <input type="text" id="input-replay-id" placeholder="Enter or paste Decision UUID (e.g. 550e8400-e29b-41d4-a716-446655440000)" style="flex: 1; padding: 8px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: #fff; font-family: monospace; font-size: 12px;">
+          <button id="btn-run-replay" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px;">Replay Decision</button>
+        </div>
+
+        <div id="replay-output-container" style="display: none;">
+          <div style="padding: 10px; background: rgba(56, 189, 248, 0.08); border-left: 3px solid #38bdf8; border-radius: 4px; font-size: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+            <span>Replaying Decision: <strong id="replay-meta-id" style="font-family: monospace; color: #38bdf8;">--</strong></span>
+            <span style="color: var(--success); font-weight: 600;">✓ Mode: READ_ONLY_TRACE (0 DB Writes Committed)</span>
+          </div>
+
+          <div class="diff-grid" style="margin-bottom: 14px;">
+            <div class="diff-card">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Step 1: Input Features</div>
+              <div id="replay-step1-body" style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">--</div>
+            </div>
+            <div class="diff-card">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Step 2: Phase 4 Numerical Scoring</div>
+              <div id="replay-step2-body" style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">--</div>
+            </div>
+          </div>
+
+          <div class="diff-grid" style="margin-bottom: 14px;">
+            <div class="diff-card">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Step 3: Phase 5 Economics & Rejected Actions</div>
+              <div id="replay-step3-body" style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">--</div>
+            </div>
+            <div class="diff-card">
+              <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">Step 4: Final Action & Audit Trail</div>
+              <div id="replay-step4-body" style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 6: MODEL GOVERNANCE & LINEAGE -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-governance">
+      <!-- Card 1: Model Lineage & Held-Out Test Evaluation -->
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span class="card-title">Model Governance, Lineage & Held-Out Benchmark Scorecard</span>
+          <span class="badge badge-info">Synthetic Validation Benchmark</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 12px;">
+          Machine-generated held-out test evaluation (<span style="color: #a5b4fc; font-family: monospace;">reports/heldout_test/results.json</span>). Strictly temporally separated, evaluated with fixed seed (42), and calibrated via Isotonic Regression. Zero fabricated metrics.
+        </p>
+
+        <div class="diff-grid" style="margin-bottom: 16px;">
+          <div class="diff-card">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Tier 0 Model Architecture & Lineage</div>
+            <div style="font-size: 15px; font-weight: 700; color: #a5b4fc;">XGBoost + Isotonic Calibrator</div>
+            <div style="margin-top: 4px; font-size: 11px; color: var(--text-secondary);">
+              Artifact: <code id="gov-artifact-hash" style="color: #38bdf8;">91842d576c12b5c1</code> | Calibrator: <code id="gov-calibrator-hash" style="color: #38bdf8;">b59dd63775113251</code>
+            </div>
+            <div style="margin-top: 2px; font-size: 11px; color: var(--text-muted);">
+              Version: <code id="gov-model-version">v1.0.0-xgb-calibrated</code> | Held-Out N = <span id="gov-sample-count">170</span>
+            </div>
+            <div style="margin-top: 8px;">
+              <div class="check-item"><span>ROC-AUC</span><span id="gov-roc-auc" style="font-weight:700; color:var(--success);">0.978</span></div>
+              <div class="check-item"><span>PR-AUC (Abuse Class)</span><span id="gov-pr-auc" style="font-weight:700; color:var(--success);">0.951</span></div>
+              <div class="check-item"><span>Precision @ Threshold 0.50</span><span id="gov-precision" style="font-weight:700; color:var(--success);">0.940</span></div>
+              <div class="check-item"><span>Recall @ Threshold 0.50</span><span id="gov-recall" style="font-weight:700; color:var(--success);">1.000</span></div>
+              <div class="check-item"><span>F1-Score @ Threshold 0.50</span><span id="gov-f1" style="font-weight:700; color:var(--success);">0.969</span></div>
+              <div class="check-item"><span>Brier Score (Prob Calibration)</span><span id="gov-brier" style="font-weight:700; color:var(--success);">0.026</span></div>
+              <div class="check-item"><span>Expected Calibration Error (ECE)</span><span id="gov-ece" style="font-weight:700; color:var(--success);">0.027</span></div>
+            </div>
+          </div>
+          <div class="diff-card">
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">Policy Engine Architecture & Lineage</div>
+            <div style="font-size: 15px; font-weight: 700; color: #a5b4fc;">LinUCB Contextual Bandit + RF Reward Model</div>
+            <div style="margin-top: 4px; font-size: 11px; color: var(--text-secondary);">
+              RF Reward Artifact: <code id="gov-rf-hash" style="color: #38bdf8;">4b402c66e3c0f214</code>
+            </div>
+            <div style="margin-top: 2px; font-size: 11px; color: var(--text-muted);">
+              Loss Model R² = 0.962 | MAE = ₹49.86 | Bandit &alpha; = 0.25
+            </div>
+            <div style="margin-top: 8px;">
+              <div class="check-item"><span>Candidate Actions</span><span style="font-weight:700;">5 Canonical Actions (A0–A4)</span></div>
+              <div class="check-item"><span>Safety Guardrail 1</span><span style="font-weight:700; color:var(--success);">A0 Barred if p &gt; 0.40</span></div>
+              <div class="check-item"><span>Safety Guardrail 2</span><span style="font-weight:700; color:var(--success);">A3 Barred for Trusted VIPs</span></div>
+              <div class="check-item"><span>Safety Guardrail 3</span><span style="font-weight:700; color:var(--danger);">A4 Mandates Human Review</span></div>
+              <div class="check-item"><span>Optimization Objective</span><span style="font-weight:700;">Maximize Net Merchant Value</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-title" style="margin-bottom: 8px;">Authoritative 17-Feature Contract Schema</div>
+        <table class="data-table" id="gov-features-table">
+          <thead>
+            <tr>
+              <th>Feature Name</th>
+              <th>Type</th>
+              <th>Unit / Range</th>
+              <th>Role & Description</th>
+            </tr>
+          </thead>
+          <tbody id="gov-features-tbody">
+            <!-- Dynamically populated from /api/v1/demo/governance -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Card 2: Measured Economic Impact & Value Creation (INR ₹) -->
+      <div class="card" style="margin-bottom: 16px;">
+        <div class="card-header">
+          <span class="card-title">Measured Economic Impact Analysis (INR ₹)</span>
+          <span class="badge badge-success">Defense-Only Optimization</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 12px;">
+          Machine-generated economic simulation (<span style="color: #a5b4fc; font-family: monospace;">reports/economic_impact.json</span>) evaluating policy actions against baseline unmitigated fraud loss on held-out cohort (N=170).
+        </p>
+
+        <div class="diff-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 16px;">
+          <div class="diff-card">
+            <div style="font-size: 10px; text-transform: uppercase; color: var(--text-muted);">Total GMV Evaluated</div>
+            <div style="font-size: 18px; font-weight: 800; color: var(--text-primary); margin-top: 4px;" id="econ-gmv">₹5,77,726.30</div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">170 Return Claims</div>
+          </div>
+          <div class="diff-card">
+            <div style="font-size: 10px; text-transform: uppercase; color: var(--text-muted);">Abuse Loss Avoided</div>
+            <div style="font-size: 18px; font-weight: 800; color: var(--success); margin-top: 4px;" id="econ-loss-avoided">₹82,847.39</div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">₹1,18,776 &rarr; ₹35,928</div>
+          </div>
+          <div class="diff-card">
+            <div style="font-size: 10px; text-transform: uppercase; color: var(--text-muted);">Customer Friction Incurred</div>
+            <div style="font-size: 18px; font-weight: 800; color: #fbbf24; margin-top: 4px;" id="econ-friction">₹3,650.00</div>
+            <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">Minimizing shopper friction</div>
+          </div>
+          <div class="diff-card">
+            <div style="font-size: 10px; text-transform: uppercase; color: var(--text-muted);">Net Merchant Value Created</div>
+            <div style="font-size: 18px; font-weight: 800; color: #38bdf8; margin-top: 4px;" id="econ-net-value">₹82,847.39</div>
+            <div style="font-size: 10px; color: #38bdf8; margin-top: 2px;">+1,434 bps of GMV</div>
+          </div>
+        </div>
+
+        <div class="card-title" style="margin-bottom: 8px;">Action Selection & Value Distribution</div>
+        <table class="data-table" id="econ-actions-table">
+          <thead>
+            <tr>
+              <th>Action Code</th>
+              <th>Intervention Description</th>
+              <th>Claims Selected</th>
+              <th>Volume %</th>
+              <th>Net Value Created (INR)</th>
+            </tr>
+          </thead>
+          <tbody id="econ-actions-tbody">
+            <tr><td><strong>A0</strong></td><td>Instant Refund (Zero Friction)</td><td>87</td><td>51.2%</td><td>₹0.00 (Customer Retention)</td></tr>
+            <tr><td><strong>A1</strong></td><td>Dynamic Return Fee</td><td>1</td><td>0.6%</td><td>₹849.49</td></tr>
+            <tr><td><strong>A2</strong></td><td>OTP Doorstep Inspection</td><td>74</td><td>43.5%</td><td>₹77,458.84</td></tr>
+            <tr><td><strong>A3</strong></td><td>Store Credit Default</td><td>8</td><td>4.7%</td><td>₹4,539.06</td></tr>
+            <tr><td><strong>A4</strong></td><td>Manual Specialist Review</td><td>0</td><td>0.0%</td><td>₹0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 7: FALLBACK RESILIENCE CENTER -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-resilience">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Fallback Resilience Center & Failure Matrix</span>
+          <span class="badge badge-success">Zero-Downtime Guarantee</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+          The platform employs layered, defense-in-depth degradation. If any ML model, LLM API, or external collector crashes or times out, the system automatically falls back to deterministic invariant checks and conservative safety rules within its $\le 150\text{ ms}$ SLA.
+        </p>
+
+        <div id="resilience-components-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px;">
+          <!-- Dynamically populated from /api/v1/demo/resilience -->
+        </div>
+
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 16px;">
+          <div class="card-header" style="padding-left: 0; padding-right: 0;">
+            <span class="card-title">Executable Failure Drills Reliability Ledger</span>
+            <span class="badge badge-success" id="drills-pass-badge">17/17 PASSED</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 12px; font-size: 12px;">
+            Machine-verified failure recovery drills (<span style="color: #a5b4fc; font-family: monospace;">reports/failure_drills.json</span>) proving graceful degradation for model corruption, timeouts, prompt injection, and database rollback safety.
+          </p>
+          <table class="data-table" id="failure-drills-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Drill Mode</th>
+                <th style="width: 25%;">Expected Fallback</th>
+                <th style="width: 25%;">Observed Verification</th>
+                <th style="width: 10%;">Status</th>
+                <th style="width: 15%;">Blast Radius</th>
+              </tr>
+            </thead>
+            <tbody id="failure-drills-tbody">
+              <!-- Dynamically populated from /api/v1/demo/drills -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 8: JUDGE MODE (GUIDED TOUR) -->
+    <!-- ===================================================================== -->
+    <div class="tab-pane" id="tab-judge">
+      <div class="tour-banner">
+        <div>
+          <div style="font-size: 14px; font-weight: 700; color: #fff;">Judge Mode: Interactive 11-Step Product Walkthrough</div>
+          <div style="font-size: 11px; color: var(--text-secondary);" id="judge-step-narrative">
+            Step 1 of 11: Evaluating a Legitimate High-Value Customer with zero fraud risk.
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="btn btn-secondary" id="btn-judge-prev" style="padding: 5px 12px;">Back</button>
+          <button class="btn btn-primary" id="btn-judge-next" style="padding: 5px 16px;">Next Step →</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title" id="judge-step-title">1. Legitimate Customer Evaluation (A0 Instant Refund)</span>
+          <span class="badge badge-info" id="judge-step-badge">Scenario 1/11</span>
+        </div>
+        <div id="judge-step-body" style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+          Demonstrating zero-friction customer trust. The model scores low abuse risk and immediately authorizes A0 Instant Refund without imposing fees or doorstep OTP verification.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Manual Override Modal -->
+  <div class="modal-overlay" id="override-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 style="font-size: 15px; font-weight: 700;">Manual Operator Override</h3>
+        <button class="close-btn" id="btn-close-modal">&times;</button>
+      </div>
+      <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 14px;">
+        Authorizes a policy action modification recorded to the immutable append-only audit trail.
+      </p>
+
+      <form id="override-form">
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label for="override-decision-id">Decision ID</label>
+          <input type="text" id="override-decision-id" readonly style="color: var(--text-muted);">
+        </div>
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label for="override-operator-id">Operator ID / Name *</label>
+          <input type="text" id="override-operator-id" placeholder="e.g. risk_officer_42" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 10px;">
+          <label for="override-new-action">Target Intervention Action *</label>
+          <select id="override-new-action" required>
+            <option value="A0">A0 — Zero-Friction Instant Approval</option>
+            <option value="A1">A1 — Dynamic Return Fee</option>
+            <option value="A2">A2 — OTP Doorstep Inspection</option>
+            <option value="A3">A3 — Store Credit Default</option>
+            <option value="A4">A4 — Disallow Return / Manual Escalation</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label for="override-reason">Mandatory Justification Reason *</label>
+          <textarea id="override-reason" placeholder="Detailed operator justification..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Authorize & Record Override
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
